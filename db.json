@@ -1,0 +1,19 @@
+{
+    "posts": [
+        {
+            "id": 1, 
+            "title": "Lamp iOS Meetup", 
+            "url":"https://avatars.githubusercontent.com/u/59794104?s=1024&v=4",
+            "thumbUrl": "https://avatars.githubusercontent.com/u/59794104?s=100&v=4"
+        },
+        {
+            "id": 2, 
+            "title": "iOS Такой", 
+            "url":"https://images.boosty.to/image/39297e27-6706-4835-8249-55d7a083c7b0?change_time=1695103569&croped=1&mh=1024&mw=1024",
+            "thumbUrl": "https://images.boosty.to/image/39297e27-6706-4835-8249-55d7a083c7b0?change_time=1695103569&croped=1&mh=100&mw=100"
+        }   
+    ],
+    "features": {
+        "suiPostList": false
+    }
+}

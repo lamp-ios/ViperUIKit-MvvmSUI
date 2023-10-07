@@ -9,7 +9,7 @@
 import Foundation
 
 struct API {
-    static let baseUrl = "https://fierce-cove-29863.herokuapp.com"
+    static let baseUrl = "http://localhost:3000"
 }
 
 protocol Endpoint {
@@ -24,7 +24,7 @@ enum Endpoints {
         
         public var path: String {
             switch self {
-            case .fetch: return "/getAllPosts"
+            case .fetch: return "/posts"
             }
         }
         

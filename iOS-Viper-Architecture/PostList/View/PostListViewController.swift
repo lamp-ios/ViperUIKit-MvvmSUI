@@ -1,5 +1,5 @@
 //
-//  PostListView.swift
+//  PostListViewController.swift
 //  iOS-Viper-Architecture
 //
 //  Created by Amit Shekhar on 18/02/17.
@@ -9,7 +9,7 @@
 import UIKit
 import PKHUD
 
-class PostListView: UIViewController {
+class PostListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     var presenter: PostListPresenterProtocol?
@@ -23,7 +23,7 @@ class PostListView: UIViewController {
     
 }
 
-extension PostListView: PostListViewProtocol {
+extension PostListViewController: PostListViewProtocol {
     func update(with state: PostListState) {
         switch state.posts {
         case nil:
@@ -42,7 +42,7 @@ extension PostListView: PostListViewProtocol {
     }
 }
 
-extension PostListView: UITableViewDataSource, UITableViewDelegate {
+extension PostListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         

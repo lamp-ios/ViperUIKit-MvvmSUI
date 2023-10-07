@@ -12,7 +12,7 @@ class PostListWireFrame: PostListWireFrameProtocol {
     
     class func createPostListModule() -> UIViewController {
         let navController = mainStoryboard.instantiateViewController(withIdentifier: "PostsNavigationController")
-        if let view = navController.childViewControllers.first as? PostListView {
+        if let view = navController.childViewControllers.first as? PostListViewController {
             let presenter: PostListPresenterProtocol & PostListInteractorOutputProtocol = PostListPresenter()
             let interactor: PostListInteractorInputProtocol & PostListRemoteDataManagerOutputProtocol = PostListInteractor()
             let localDataManager: PostListLocalDataManagerInputProtocol = PostListLocalDataManager()

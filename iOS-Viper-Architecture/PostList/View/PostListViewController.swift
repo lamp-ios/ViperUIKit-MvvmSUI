@@ -63,3 +63,7 @@ extension PostListViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
 }
+
+#Preview {
+    PostListWireFrame.createPostListModule()
+}

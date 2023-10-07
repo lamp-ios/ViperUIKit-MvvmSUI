@@ -18,15 +18,15 @@ class PostListPresenter: PostListPresenterProtocol {
         }
     }
 
-    func viewDidLoad() {
-        state.posts = .loading
-        interactor?.retrievePostList()
+    func perform(action: PostListAction) {
+        switch action {
+        case .viewLoad:
+            state.posts = .loading
+            interactor?.retrievePostList()
+        case let .showDetail(post):
+            wireFrame?.presentPostDetailScreen(from: view!, forPost: post)
+        }
     }
-    
-    func showPostDetail(forPost post: PostModel) {
-        wireFrame?.presentPostDetailScreen(from: view!, forPost: post)
-    }
-
 }
 
 extension PostListPresenter: PostListInteractorOutputProtocol {

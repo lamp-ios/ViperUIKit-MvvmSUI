@@ -17,7 +17,7 @@ class PostListView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.viewDidLoad()
+        presenter?.perform(action: .viewLoad)
         tableView.tableFooterView = UIView()
     }
     
@@ -59,7 +59,7 @@ extension PostListView: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.showPostDetail(forPost: postList[indexPath.row])
+        presenter?.perform(action: .showDetail(post: postList[indexPath.row]))
     }
     
 }

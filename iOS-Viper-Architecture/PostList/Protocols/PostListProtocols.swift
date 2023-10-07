@@ -17,6 +17,11 @@ struct PostListState {
     var posts: LoadingState<[PostModel], Error>?
 }
 
+enum PostListAction {
+    case viewLoad
+    case showDetail(post: PostModel)
+}
+
 protocol PostListViewProtocol: class {
     var presenter: PostListPresenterProtocol? { get set }
     
@@ -36,8 +41,7 @@ protocol PostListPresenterProtocol: class {
     var wireFrame: PostListWireFrameProtocol? { get set }
     
     // VIEW -> PRESENTER
-    func viewDidLoad()
-    func showPostDetail(forPost post: PostModel)
+    func perform(action: PostListAction)
 }
 
 protocol PostListInteractorOutputProtocol: class {

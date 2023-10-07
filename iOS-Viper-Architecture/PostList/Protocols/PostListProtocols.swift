@@ -8,6 +8,15 @@
 
 import UIKit
 
+enum LoadingState<Value, Failure: Error> {
+    case loading
+    case loaded(Result<Value, Failure>)
+}
+
+struct PostListState {
+    var posts: LoadingState<[PostModel], Error>?
+}
+
 protocol PostListViewProtocol: class {
     var presenter: PostListPresenterProtocol? { get set }
     

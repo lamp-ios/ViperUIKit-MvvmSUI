@@ -23,8 +23,6 @@ enum PostListAction {
 }
 
 protocol PostListViewProtocol: class {
-    var presenter: PostListPresenterProtocol? { get set }
-    
     // PRESENTER -> VIEW
     func update(with state: PostListState)
 }

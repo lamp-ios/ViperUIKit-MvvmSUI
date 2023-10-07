@@ -32,6 +32,7 @@
 		152D268C1E59A73600BB3860 /* Post+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152D268A1E59A73600BB3860 /* Post+CoreDataProperties.swift */; };
 		15B951301E59574600C6B3AD /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B9512F1E59574600C6B3AD /* Endpoints.swift */; };
 		15B951321E59745C00C6B3AD /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B951311E59745C00C6B3AD /* PostTableViewCell.swift */; };
+		8C5A6C542AD154F5005FE0D6 /* PostListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5A6C532AD154F5005FE0D6 /* PostListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		15B9512F1E59574600C6B3AD /* Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		15B951311E59745C00C6B3AD /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		603469DB5210F5C501F8FDB5 /* Pods-iOS-Viper-Architecture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS-Viper-Architecture.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS-Viper-Architecture/Pods-iOS-Viper-Architecture.debug.xcconfig"; sourceTree = "<group>"; };
+		8C5A6C532AD154F5005FE0D6 /* PostListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListView.swift; sourceTree = "<group>"; };
 		C0BC9D39498F514FA6DCC853 /* Pods-iOS-Viper-Architecture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS-Viper-Architecture.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS-Viper-Architecture/Pods-iOS-Viper-Architecture.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -228,6 +230,7 @@
 			children = (
 				1501C2651E58AF200013EA25 /* PostListViewController.swift */,
 				15B951311E59745C00C6B3AD /* PostTableViewCell.swift */,
+				8C5A6C532AD154F5005FE0D6 /* PostListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				1501C2621E58ABBA0013EA25 /* PostListPresenter.swift in Sources */,
 				1501C2601E58AA6D0013EA25 /* PostListInteractor.swift in Sources */,
 				15B951301E59574600C6B3AD /* Endpoints.swift in Sources */,
+				8C5A6C542AD154F5005FE0D6 /* PostListView.swift in Sources */,
 				1501C2641E58AE1B0013EA25 /* PostListWireFrame.swift in Sources */,
 				1501C2541E58A0FC0013EA25 /* PersistenceError.swift in Sources */,
 				152D268B1E59A73600BB3860 /* Post.swift in Sources */,

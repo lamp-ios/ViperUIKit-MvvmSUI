@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -33,6 +33,7 @@
 		15B951301E59574600C6B3AD /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B9512F1E59574600C6B3AD /* Endpoints.swift */; };
 		15B951321E59745C00C6B3AD /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B951311E59745C00C6B3AD /* PostTableViewCell.swift */; };
 		8C5A6C542AD154F5005FE0D6 /* PostListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5A6C532AD154F5005FE0D6 /* PostListView.swift */; };
+		8C5A6C572AD155E6005FE0D6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8C5A6C562AD155E6005FE0D6 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C5A6C572AD155E6005FE0D6 /* Kingfisher in Frameworks */,
 				0BF9D5AA3522E7542CD4C99E /* Pods_iOS_Viper_Architecture.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +296,9 @@
 			dependencies = (
 			);
 			name = "iOS-Viper-Architecture";
+			packageProductDependencies = (
+				8C5A6C562AD155E6005FE0D6 /* Kingfisher */,
+			);
 			productName = "iOS-Viper-Architecture";
 			productReference = 1501C1F91E588B550013EA25 /* iOS-Viper-Architecture.app */;
 			productType = "com.apple.product-type.application";
@@ -325,6 +330,9 @@
 				Base,
 			);
 			mainGroup = 1501C1F01E588B550013EA25;
+			packageReferences = (
+				8C5A6C552AD155E6005FE0D6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 1501C1FA1E588B550013EA25 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -545,7 +553,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -559,7 +568,10 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "iOS-Viper-Architecture/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mindorks.iOS-Viper-Architecture";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -575,7 +587,10 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "iOS-Viper-Architecture/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mindorks.iOS-Viper-Architecture";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -605,6 +620,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8C5A6C552AD155E6005FE0D6 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8C5A6C562AD155E6005FE0D6 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C5A6C552AD155E6005FE0D6 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		1501C2031E588B550013EA25 /* iOS_Viper_Architecture.xcdatamodeld */ = {

@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 final class PostListViewModel: ObservableObject, PostListViewProtocol {
     private let performAction: (PostListAction) -> Void
@@ -29,4 +30,52 @@ final class PostListViewModel: ObservableObject, PostListViewProtocol {
     func perform(action: PostListAction) {
         performAction(action)
     }
+}
+
+struct PostListView: View {
+    @StateObject var viewModel: PostListViewModel
+
+    var body: some View {
+        List {
+            switch viewModel.state.posts {
+            case .none:
+                EmptyView()
+            case .loading:
+                HStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                }
+            case let .loaded(.success(posts)):
+                ForEach(posts) { post in
+                    Button {
+                        viewModel.perform(action: .showDetail(post: post))
+                    } label: {
+                        HStack {
+                            KFImage(URL(string: post.thumbImageUrl))
+                                .resizable()
+                                .placeholder {
+                                    ProgressView()
+                                }
+                                .frame(width: 50, height: 50)
+                            VStack {
+                                Text(post.title)
+                            }
+                        }
+                    }
+                }
+            case .loaded(.failure):
+                Text("Some error happened")
+            }
+        }.onAppear {
+            viewModel.perform(action: .viewLoad)
+        }.navigationTitle("Posts")
+    }
+}
+
+#Preview {
+    PostListView(viewModel: .init(
+        state: .init(posts: .loading),
+        performAction: { dump($0) }
+    ))
 }

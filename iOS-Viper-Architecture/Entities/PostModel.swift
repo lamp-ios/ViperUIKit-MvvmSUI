@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-struct PostModel {
+struct PostModel: Identifiable {
     var id = 0
     var title = ""
     var imageUrl = ""

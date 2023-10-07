@@ -7,8 +7,6 @@ This repository contains a detailed sample app that implements VIPER architectur
   <img src="https://raw.githubusercontent.com/amitshekhariitbhu/iOS-Viper-Architecture/assets/screenshot2.png" width="250">
   <img src="https://raw.githubusercontent.com/amitshekhariitbhu/iOS-Viper-Architecture/assets/screenshot3.png" width="250">
 </p>
-<br>
-<br>
 
 ## How to run test backend
 
@@ -16,14 +14,13 @@ This repository contains a detailed sample app that implements VIPER architectur
 2. `cd` to root of project directory
 3. Run it: `json-server -d 1000 --watch db.json`
 
-# VIPER Architecture Blueprint
+## VIPER Architecture Blueprint
+
 ![Blueprint](https://raw.githubusercontent.com/amitshekhariitbhu/iOS-Viper-Architecture/assets/viper.png)
-<br>
 
-# Project Structure
+## Project Structure
+
 ![Structure](https://raw.githubusercontent.com/amitshekhariitbhu/iOS-Viper-Architecture/assets/project_structure.png)
-<br>
-
 
 ## Just fork, clone, build, run and learn VIPER architecture for IOS.
 
@@ -35,6 +32,7 @@ open iOS-Viper-Architecture.xcworkspace
 ```
 
 ### License
+
 ```
    Copyright (C) 2022 Amit Shekhar
 
@@ -52,4 +50,5 @@ open iOS-Viper-Architecture.xcworkspace
 ```
 
 ### Contributing to iOS Viper Architecture
+
 Just make pull request. You are in!

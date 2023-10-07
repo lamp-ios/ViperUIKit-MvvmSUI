@@ -31,7 +31,7 @@ class PostListPresenter: PostListPresenterProtocol {
             state.posts = .loading
             interactor.retrievePostList()
         case let .showDetail(post):
-            wireFrame.presentPostDetailScreen(from: view!, forPost: post)
+            wireFrame.presentPostDetailScreen(forPost: post)
         }
     }
 }

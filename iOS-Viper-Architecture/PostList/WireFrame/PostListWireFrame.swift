@@ -20,7 +20,7 @@ class PostListWireFrame: PostListWireFrameProtocol {
 
     class func createPostListModuleUIKit(state: PostListState = .init()) -> UIViewController {
         let navController = mainStoryboard.instantiateViewController(withIdentifier: "PostsNavigationController")
-        if let view = navController.childViewControllers.first as? PostListViewController {
+        if let viewController = navController.childViewControllers.first as? PostListViewController {
             let wireFrame = PostListWireFrame()
 
             let localDataManager: PostListLocalDataManagerInputProtocol = PostListLocalDataManager()
@@ -37,8 +37,9 @@ class PostListWireFrame: PostListWireFrameProtocol {
                 state: state
             )
 
-            view.presenter = presenter
-            presenter.view = view
+            wireFrame.viewController = viewController
+            viewController.presenter = presenter
+            presenter.view = viewController
             interactor.presenter = presenter
             remoteDataManager.remoteRequestHandler = interactor
             
@@ -68,7 +69,7 @@ class PostListWireFrame: PostListWireFrameProtocol {
         let view = PostListView(viewModel: viewModel)
         let viewController = UIHostingController(rootView: view)
 
-
+        wireFrame.viewController = viewController
         presenter.view = viewModel
         interactor.presenter = presenter
         remoteDataManager.remoteRequestHandler = interactor
@@ -80,12 +81,13 @@ class PostListWireFrame: PostListWireFrameProtocol {
         return UIStoryboard(name: "Main", bundle: Bundle.main)
     }
     
+    weak var viewController: UIViewController?
 
-    func presentPostDetailScreen(from view: PostListViewProtocol, forPost post: PostModel) {
+    func presentPostDetailScreen(forPost post: PostModel) {
         let postDetailViewController = PostDetailWireFrame.createPostDetailModule(forPost: post)
    
-        if let sourceView = view as? UIViewController {
-           sourceView.navigationController?.pushViewController(postDetailViewController, animated: true)
+        if let viewController {
+            viewController.navigationController?.pushViewController(postDetailViewController, animated: true)
         }
     }
     

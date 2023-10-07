@@ -30,7 +30,7 @@ protocol PostListViewProtocol: class {
 protocol PostListWireFrameProtocol: class {
     static func createPostListModule(state: PostListState) -> UIViewController
     // PRESENTER -> WIREFRAME
-    func presentPostDetailScreen(from view: PostListViewProtocol, forPost post: PostModel)
+    func presentPostDetailScreen(forPost post: PostModel)
 }
 
 protocol PostListPresenterProtocol: class {

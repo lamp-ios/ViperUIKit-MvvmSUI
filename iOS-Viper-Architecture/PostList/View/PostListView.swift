@@ -2,66 +2,80 @@
 //  PostListView.swift
 //  iOS-Viper-Architecture
 //
-//  Created by Amit Shekhar on 18/02/17.
-//  Copyright © 2017 Mindorks NextGen Private Limited. All rights reserved.
+//  Created by gnkiriy on 07.10.2023.
+//  Copyright © 2023 Mindorks NextGen Private Limited. All rights reserved.
 //
 
-import UIKit
-import PKHUD
+import SwiftUI
+import Kingfisher
 
-class PostListView: UIViewController {
-    
-    @IBOutlet weak var tableView: UITableView!
-    var presenter: PostListPresenterProtocol?
-    var postList: [PostModel] = []
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        presenter?.viewDidLoad()
-        tableView.tableFooterView = UIView()
+final class PostListViewModel: ObservableObject, PostListViewProtocol {
+    private let performAction: (PostListAction) -> Void
+
+    @Published
+    var state: PostListState
+
+    init(
+        state: PostListState = .init(),
+        performAction: @escaping (PostListAction) -> Void
+    ) {
+        self.state = state
+        self.performAction = performAction
     }
-    
+
+    func update(with state: PostListState) {
+        self.state = state
+    }
+
+    func perform(action: PostListAction) {
+        performAction(action)
+    }
 }
 
-extension PostListView: PostListViewProtocol {
-    
-    func showPosts(with posts: [PostModel]) {
-        postList = posts
-        tableView.reloadData()
+struct PostListView: View {
+    @StateObject var viewModel: PostListViewModel
+
+    var body: some View {
+        List {
+            switch viewModel.state.posts {
+            case .none:
+                EmptyView()
+            case .loading:
+                HStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                }
+            case let .loaded(.success(posts)):
+                ForEach(posts) { post in
+                    Button {
+                        viewModel.perform(action: .showDetail(post: post))
+                    } label: {
+                        HStack {
+                            KFImage(URL(string: post.thumbImageUrl))
+                                .resizable()
+                                .placeholder {
+                                    ProgressView()
+                                }
+                                .frame(width: 50, height: 50)
+                            VStack {
+                                Text(post.title)
+                            }
+                        }
+                    }
+                }
+            case .loaded(.failure):
+                Text("Some error happened")
+            }
+        }.onAppear {
+            viewModel.perform(action: .viewLoad)
+        }.navigationTitle("Posts")
     }
-    
-    func showError() {
-        HUD.flash(.label("Internet not connected"), delay: 2.0)
-    }
-    
-    func showLoading() {
-        HUD.show(.progress)
-    }
-    
-    func hideLoading() {
-        HUD.hide()
-    }
-    
 }
 
-extension PostListView: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
-        
-        let post = postList[indexPath.row]
-        cell.set(forPost: post)
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postList.count
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.showPostDetail(forPost: postList[indexPath.row])
-    }
-    
+#Preview {
+    PostListView(viewModel: .init(
+        state: .init(posts: .loading),
+        performAction: { dump($0) }
+    ))
 }

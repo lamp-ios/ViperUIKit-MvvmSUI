@@ -6,34 +6,44 @@
 //  Copyright © 2017 Mindorks NextGen Private Limited. All rights reserved.
 //
 
+extension String: Error {}
+
 class PostListPresenter: PostListPresenterProtocol {
     weak var view: PostListViewProtocol?
-    var interactor: PostListInteractorInputProtocol?
-    var wireFrame: PostListWireFrameProtocol?
-    
-    func viewDidLoad() {
-        view?.showLoading()
-        interactor?.retrievePostList()
-    }
-    
-    func showPostDetail(forPost post: PostModel) {
-        wireFrame?.presentPostDetailScreen(from: view!, forPost: post)
+    let interactor: PostListInteractorInputProtocol
+    let wireFrame: PostListWireFrameProtocol
+
+    init(interactor: PostListInteractorInputProtocol, wireFrame: PostListWireFrameProtocol, state: PostListState) {
+        self.interactor = interactor
+        self.wireFrame = wireFrame
+        self.state = state
     }
 
+    var state: PostListState = .init() {
+        didSet {
+            view?.update(with: state)
+        }
+    }
+
+    func perform(action: PostListAction) {
+        switch action {
+        case .viewLoad:
+            state.posts = .loading
+            interactor.retrievePostList()
+        case let .showDetail(post):
+            wireFrame.presentPostDetailScreen(forPost: post)
+        }
+    }
 }
 
 extension PostListPresenter: PostListInteractorOutputProtocol {
-    
     func didRetrievePosts(_ posts: [PostModel]) {
-        view?.hideLoading()
-        view?.showPosts(with: posts)
+        state.posts = .loaded(.success(posts))
     }
     
     func onError() {
-        view?.hideLoading()
-        view?.showError()
+        state.posts = .loaded(.failure("Что-то пошло не так"))
     }
-    
 }
 
 

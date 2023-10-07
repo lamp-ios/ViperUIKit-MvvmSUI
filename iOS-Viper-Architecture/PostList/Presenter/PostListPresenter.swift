@@ -10,8 +10,15 @@ extension String: Error {}
 
 class PostListPresenter: PostListPresenterProtocol {
     weak var view: PostListViewProtocol?
-    var interactor: PostListInteractorInputProtocol?
-    var wireFrame: PostListWireFrameProtocol?
+    let interactor: PostListInteractorInputProtocol
+    let wireFrame: PostListWireFrameProtocol
+
+    init(interactor: PostListInteractorInputProtocol, wireFrame: PostListWireFrameProtocol, state: PostListState) {
+        self.interactor = interactor
+        self.wireFrame = wireFrame
+        self.state = state
+    }
+
     var state: PostListState = .init() {
         didSet {
             view?.update(with: state)
@@ -22,9 +29,9 @@ class PostListPresenter: PostListPresenterProtocol {
         switch action {
         case .viewLoad:
             state.posts = .loading
-            interactor?.retrievePostList()
+            interactor.retrievePostList()
         case let .showDetail(post):
-            wireFrame?.presentPostDetailScreen(from: view!, forPost: post)
+            wireFrame.presentPostDetailScreen(from: view!, forPost: post)
         }
     }
 }

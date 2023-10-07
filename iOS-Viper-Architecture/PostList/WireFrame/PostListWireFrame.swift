@@ -10,22 +10,28 @@ import UIKit
 
 class PostListWireFrame: PostListWireFrameProtocol {
     
-    class func createPostListModule() -> UIViewController {
+    class func createPostListModule(state: PostListState = .init()) -> UIViewController {
         let navController = mainStoryboard.instantiateViewController(withIdentifier: "PostsNavigationController")
         if let view = navController.childViewControllers.first as? PostListViewController {
-            let presenter: PostListPresenterProtocol & PostListInteractorOutputProtocol = PostListPresenter()
-            let interactor: PostListInteractorInputProtocol & PostListRemoteDataManagerOutputProtocol = PostListInteractor()
+            let wireFrame = PostListWireFrame()
+
             let localDataManager: PostListLocalDataManagerInputProtocol = PostListLocalDataManager()
             let remoteDataManager: PostListRemoteDataManagerInputProtocol = PostListRemoteDataManager()
-            let wireFrame: PostListWireFrameProtocol = PostListWireFrame()
-            
+
+            let interactor = PostListInteractor(
+                localDatamanager: localDataManager,
+                remoteDatamanager: remoteDataManager
+            )
+
+            let presenter = PostListPresenter(
+                interactor: interactor,
+                wireFrame: wireFrame,
+                state: state
+            )
+
             view.presenter = presenter
             presenter.view = view
-            presenter.wireFrame = wireFrame
-            presenter.interactor = interactor
             interactor.presenter = presenter
-            interactor.localDatamanager = localDataManager
-            interactor.remoteDatamanager = remoteDataManager
             remoteDataManager.remoteRequestHandler = interactor
             
             return navController

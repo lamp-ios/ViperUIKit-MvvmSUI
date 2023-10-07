@@ -28,16 +28,12 @@ protocol PostListViewProtocol: class {
 }
 
 protocol PostListWireFrameProtocol: class {
-    static func createPostListModule() -> UIViewController
+    static func createPostListModule(state: PostListState) -> UIViewController
     // PRESENTER -> WIREFRAME
     func presentPostDetailScreen(from view: PostListViewProtocol, forPost post: PostModel)
 }
 
 protocol PostListPresenterProtocol: class {
-    var view: PostListViewProtocol? { get set }
-    var interactor: PostListInteractorInputProtocol? { get set }
-    var wireFrame: PostListWireFrameProtocol? { get set }
-    
     // VIEW -> PRESENTER
     func perform(action: PostListAction)
 }
@@ -49,10 +45,6 @@ protocol PostListInteractorOutputProtocol: class {
 }
 
 protocol PostListInteractorInputProtocol: class {
-    var presenter: PostListInteractorOutputProtocol? { get set }
-    var localDatamanager: PostListLocalDataManagerInputProtocol? { get set }
-    var remoteDatamanager: PostListRemoteDataManagerInputProtocol? { get set }
-    
     // PRESENTER -> INTERACTOR
     func retrievePostList()
 }

@@ -10,6 +10,12 @@ This repository contains a detailed sample app that implements VIPER architectur
 <br>
 <br>
 
+## How to run test backend
+
+1. Install [json-server](https://github.com/typicode/json-server#getting-started)
+2. `cd` to root of project directory
+3. Run it: `json-server -d 1000 --watch db.json`
+
 # VIPER Architecture Blueprint
 ![Blueprint](https://raw.githubusercontent.com/amitshekhariitbhu/iOS-Viper-Architecture/assets/viper.png)
 <br>

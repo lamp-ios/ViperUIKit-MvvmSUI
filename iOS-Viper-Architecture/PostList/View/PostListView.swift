@@ -24,24 +24,22 @@ class PostListView: UIViewController {
 }
 
 extension PostListView: PostListViewProtocol {
-    
-    func showPosts(with posts: [PostModel]) {
-        postList = posts
-        tableView.reloadData()
+    func update(with state: PostListState) {
+        switch state.posts {
+        case nil:
+            HUD.hide()
+            postList = []
+            tableView.reloadData()
+        case .loading:
+            HUD.show(.progress)
+        case let .loaded(.success(posts)):
+            HUD.hide()
+            postList = posts
+            tableView.reloadData()
+        case .loaded(.failure):
+            HUD.flash(.labeledError(title: "Some error occured", subtitle: "Try again later"))
+        }
     }
-    
-    func showError() {
-        HUD.flash(.label("Internet not connected"), delay: 2.0)
-    }
-    
-    func showLoading() {
-        HUD.show(.progress)
-    }
-    
-    func hideLoading() {
-        HUD.hide()
-    }
-    
 }
 
 extension PostListView: UITableViewDataSource, UITableViewDelegate {

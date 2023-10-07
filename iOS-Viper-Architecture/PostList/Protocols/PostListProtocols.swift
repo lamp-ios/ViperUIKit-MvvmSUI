@@ -21,13 +21,7 @@ protocol PostListViewProtocol: class {
     var presenter: PostListPresenterProtocol? { get set }
     
     // PRESENTER -> VIEW
-    func showPosts(with posts: [PostModel])
-    
-    func showError()
-    
-    func showLoading()
-    
-    func hideLoading()
+    func update(with state: PostListState)
 }
 
 protocol PostListWireFrameProtocol: class {

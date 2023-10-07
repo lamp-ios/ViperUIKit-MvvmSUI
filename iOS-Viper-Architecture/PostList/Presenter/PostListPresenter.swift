@@ -6,13 +6,20 @@
 //  Copyright © 2017 Mindorks NextGen Private Limited. All rights reserved.
 //
 
+extension String: Error {}
+
 class PostListPresenter: PostListPresenterProtocol {
     weak var view: PostListViewProtocol?
     var interactor: PostListInteractorInputProtocol?
     var wireFrame: PostListWireFrameProtocol?
-    
+    var state: PostListState = .init() {
+        didSet {
+            view?.update(with: state)
+        }
+    }
+
     func viewDidLoad() {
-        view?.showLoading()
+        state.posts = .loading
         interactor?.retrievePostList()
     }
     
@@ -23,17 +30,13 @@ class PostListPresenter: PostListPresenterProtocol {
 }
 
 extension PostListPresenter: PostListInteractorOutputProtocol {
-    
     func didRetrievePosts(_ posts: [PostModel]) {
-        view?.hideLoading()
-        view?.showPosts(with: posts)
+        state.posts = .loaded(.success(posts))
     }
     
     func onError() {
-        view?.hideLoading()
-        view?.showError()
+        state.posts = .loaded(.failure("Что-то пошло не так"))
     }
-    
 }
 
 
